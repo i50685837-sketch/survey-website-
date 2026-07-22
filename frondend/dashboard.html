@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Survey Hub Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+
+body{
+
+background:#07111f;
+color:white;
+
+}
+
+
+.container{
+
+display:flex;
+min-height:100vh;
+
+}
+
+
+/* MENU */
+
+.menu{
+
+width:270px;
+padding:20px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(20px);
+
+}
+
+
+
+.user{
+
+background:rgba(255,255,255,.12);
+
+padding:20px;
+
+border-radius:25px;
+
+margin-bottom:20px;
+
+}
+
+
+.user h2{
+
+color:#00ff95;
+
+}
+
+
+.menu button{
+
+width:100%;
+
+padding:15px;
+
+margin:8px 0;
+
+border:none;
+
+border-radius:15px;
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+.deposit{background:#0984e3;}
+.withdraw{background:#d63031;}
+.profile{background:#8e44ad;}
+.settings{background:#34495e;}
+.about{background:#00b894;}
+.invite{background:#e67e22;}
+.reward{background:#16a085;}
+.logout{background:#c0392b;}
+
+
+
+
+/* MAIN */
+
+.main{
+
+flex:1;
+
+padding:30px;
+
+}
+
+
+
+/* SURVEY BANNER */
+
+.banner{
+
+height:230px;
+
+border-radius:30px;
+
+padding:35px;
+
+background:
+
+linear-gradient(
+rgba(0,0,0,.5),
+rgba(0,0,0,.5)
+),
+
+url("https://images.unsplash.com/photo-1551836022-d5d88e9218df");
+
+background-size:cover;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+}
+
+
+
+.banner h1{
+
+font-size:35px;
+
+}
+
+
+
+.banner span{
+
+color:#00ff95;
+
+}
+
+
+
+.banner button{
+
+margin-top:20px;
+
+width:180px;
+
+padding:12px;
+
+border:none;
+
+border-radius:25px;
+
+background:#00ff95;
+
+font-weight:bold;
+
+}
+
+
+
+
+/* CARDS */
+
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+gap:20px;
+
+margin-top:30px;
+
+}
+
+
+
+.card{
+
+background:rgba(255,255,255,.12);
+
+padding:25px;
+
+border-radius:20px;
+
+}
+
+
+.card h3{
+
+color:#00ff95;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+
+<div class="menu">
+
+
+<div class="user">
+
+<h2 id="username">
+👤 Morde
+</h2>
+
+<p>
+Wallet KSh <span id="wallet">0</span>
+</p>
+
+</div>
+
+
+<button class="deposit">
+🔵 Deposit
+</button>
+
+
+<button class="withdraw">
+🔴 Withdraw
+</button>
+
+
+<button class="profile">
+🟣 Profile
+</button>
+
+
+<button class="settings">
+⚙ Settings
+</button>
+
+
+<button class="about">
+🟢 About
+</button>
+
+
+<button class="invite">
+🟠 Invite Friends
+</button>
+
+
+<button class="reward">
+🎁 Rewards
+</button>
+
+
+<button class="logout" onclick="logout()">
+🚪 Log Out
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="main">
+
+
+
+<div class="banner">
+
+
+<h1>
+📝 Earn Rewards With 
+<span>Surveys</span>
+</h1>
+
+
+<p>
+Complete surveys and collect points.
+</p>
+
+
+<button>
+Start Survey
+</button>
+
+
+</div>
+
+
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h3>
+💰 Wallet
+</h3>
+
+<h2 id="balance">
+KSh 0
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+🎁 Points
+</h3>
+
+<h2 id="points">
+0
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+📝 Surveys
+</h3>
+
+<h2>
+Available
+</h2>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+const token = localStorage.getItem("token");
+
+
+async function loadDashboard(){
+
+
+const profile = await fetch(
+
+"http://localhost:5000/api/user/profile",
+
+{
+
+headers:{
+
+Authorization:"Bearer "+token
+
+}
+
+}
+
+);
+
+
+const user = await profile.json();
+
+
+
+document.getElementById("username").innerHTML =
+"👤 "+user.name;
+
+
+
+const wallet = await fetch(
+
+"http://localhost:5000/api/user/wallet",
+
+{
+
+headers:{
+
+Authorization:"Bearer "+token
+
+}
+
+}
+
+);
+
+
+
+const data = await wallet.json();
+
+
+
+document.getElementById("wallet").innerHTML=data.wallet;
+
+document.getElementById("balance").innerHTML=
+"KSh "+data.wallet;
+
+
+document.getElementById("points").innerHTML=
+data.points;
+
+
+
+}
+
+
+
+function logout(){
+
+localStorage.clear();
+
+window.location.href="index.html";
+
+}
+
+
+
+loadDashboard();
+
+
+</script>
+
+
+
+</body>
+
+  </html>
