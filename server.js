@@ -19,6 +19,7 @@ connectDB();
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/user", require("./routes/user"));
 app.use("/api/survey", require("./routes/survey"));
+app.use("/api/reward", require("./routes/reward"));
 
 
 // Test API
