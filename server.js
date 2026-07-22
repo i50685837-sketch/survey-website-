@@ -17,6 +17,7 @@ connectDB();
 
 // Routes
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/user", require("./routes/user"));
 
 
 // Test API
