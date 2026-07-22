@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survey Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url("https://images.unsplash.com/photo-1556761175-b413da4baf72");
+background-size:cover;
+background-position:center;
+color:white;
+}
+
+/* Header */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+}
+
+.logo{
+font-size:34px;
+font-weight:700;
+color:#00ff95;
+text-shadow:0 0 15px #00ff95;
+}
+
+.auth-buttons{
+display:flex;
+gap:15px;
+}
+
+.auth-buttons button{
+padding:12px 28px;
+border:none;
+border-radius:30px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.login{
+background:#ffffff;
+color:#07111f;
+}
+
+.register{
+background:#00ff95;
+color:#07111f;
+}
+
+.login:hover,
+.register:hover{
+transform:scale(1.05);
+}
+
+/* Hero */
+
+.hero{
+height:70vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.glass{
+max-width:750px;
+width:100%;
+text-align:center;
+padding:50px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(20px);
+border-radius:30px;
+box-shadow:0 0 30px rgba(0,255,149,.3);
+}
+
+.glass h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+.glass h1 span{
+color:#00ff95;
+}
+
+.glass p{
+font-size:18px;
+line-height:1.8;
+color:#ddd;
+}
+
+/* Start Button */
+
+.start{
+margin-top:30px;
+padding:16px 45px;
+border:none;
+border-radius:35px;
+background:#00ff95;
+color:#07111f;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+box-shadow:0 0 20px #00ff95;
+transition:.3s;
+}
+
+.start:hover{
+transform:scale(1.08);
+box-shadow:0 0 40px #00ff95;
+}
+
+/* Features */
+
+.features{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+padding:30px;
+}
+
+.card{
+width:230px;
+padding:25px;
+text-align:center;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(15px);
+border-radius:20px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h2{
+font-size:40px;
+margin-bottom:10px;
+color:#00ff95;
+}
+
+.card p{
+color:#ddd;
+}
+
+footer{
+text-align:center;
+padding:20px;
+color:#ccc;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+📝 Survey Hub
+</div>
+
+<div class="auth-buttons">
+
+<button class="login" onclick="window.location.href='login.html'">
+Login
+</button>
+
+<button class="register" onclick="window.location.href='register.html'">
+Register
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="glass">
+
+<h1>
+Earn Rewards With <span>Surveys</span>
+</h1>
+
+<p>
+Join Survey Hub today, answer surveys, earn points, invite friends, and redeem exciting rewards directly to your wallet.
+</p>
+
+<button class="start" onclick="window.location.href='register.html'">
+🚀 Start Earning
+</button>
+
+</div>
+
+</section>
+
+<section class="features">
+
+<div class="card">
+<h2>📝</h2>
+<h3>Daily Surveys</h3>
+<p>Complete surveys every day and earn reward points.</p>
+</div>
+
+<div class="card">
+<h2>🎁</h2>
+<h3>Rewards</h3>
+<p>Redeem your points for exciting rewards.</p>
+</div>
+
+<div class="card">
+<h2>💰</h2>
+<h3>Wallet</h3>
+<p>Track your earnings and withdrawal balance.</p>
+</div>
+
+<div class="card">
+<h2>👥</h2>
+<h3>Invite Friends</h3>
+<p>Invite friends and receive referral bonuses.</p>
+</div>
+
+</section>
+
+<footer>
+© 2026 Survey Hub. All Rights Reserved.
+</footer>
+
+</body>
+  </html>
